@@ -4,40 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam-Practice</title>
+    <title>Tesoro_CSPL FINAL</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
-   
-   <!--form for GET and POST method-->
-  <form id="form-api" style="background-color: red; border: 1px solid blue;"></form>
-  <input type="radio" name="first" id="get" value="Get">Get<br/>
-  <input type="radio" name="first" id="post" value="Post">Post<br/>
-  <hr>
+    
+ <!--Title of the project-->
+ <div id="title" style="text-align: center; color: white;">
+    <h1>CSPL FINAL PROJECT</h1>
+    <h2>CARLO TESORO</h2>
+ </div>
 
-  <!--form for title radio buttons-->
-  <input type="radio" name="sec" id="the" value="The">The<br/>
-  <input type="radio" name="sec" id="happy" value="Happy">Happy<br/>
-  <input type="radio" name="sec" id="sad" value="Sad">Sad<br/>
-  <input type="radio" name="sec" id="lazy" value="Lazy">Lazy<br/>
-  <hr>
-
-  <!--form for body radio buttons-->
-  <input type="radio" name="third" id="dog" value="Dog">Dog<br/>
-  <input type="radio" name="third" id="cat" value="Cat">Cat<br/>
-  <input type="radio" name="third" id="fox" value="Fox">Fox<br/>
-  <input type="radio" name="third" id="bear" value="Bear">Bear<br/>
-  <hr>  
-
-  <!--button for performing operation-->
-  <button type="button" class="btn btn-primary" onclick="RadioCheck()">Perform Operation</button>
+  <!--form for GET and POST method-->
+   <div id="group_api" style="color: white; font-size: 18px;">
+     <form id="form-api"></form>
+     <input type="radio" name="first" id="get" value="Get">Get<br/>
+     <input type="radio" name="first" id="post" value="Post">Post<br/>
+     <hr style="background-color: white;" >
+   </div>
   
-  <br>
-  <br>
-  <!--header for displaying selected operations-->
-  <h1 id="result" style="text-align: center; background-color: aqua;"></h1>
+  <!--form for title radio buttons-->
+    <div id="group_title" style="color: white; font-size: 18px;">
+    <input type="radio" name="sec" id="the" value="The">The<br/>
+    <input type="radio" name="sec" id="happy" value="Happy">Happy<br/>
+    <input type="radio" name="sec" id="sad" value="Sad">Sad<br/>
+    <input type="radio" name="sec" id="lazy" value="Lazy">Lazy<br/>
+    <hr style="background-color: white;" >
+   </div>
+  
+  <!--form for body radio buttons-->
+  <div id="group_body" style="color: white; font-size: 18px;">
+    <input type="radio" name="third" id="dog" value="Dog">Dog<br/>
+    <input type="radio" name="third" id="cat" value="Cat">Cat<br/>
+    <input type="radio" name="third" id="fox" value="Fox">Fox<br/>
+    <input type="radio" name="third" id="bear" value="Bear">Bear<br/>
+    <hr style="background-color: white;"> 
+  </div>   
 
-</body>
+  <!-- bootstrap button for performing operation-->
+  <button type="button" class="btn btn-primary" onclick="RadioCheck()">Perform Operation</button>
+  <br>
+  <br>
+
+ 
+  <!--bootstrap table for showing output-->
+  <table class="table" id="Table" style="width: 80%; height: 100px;">
+    <thead>
+        <th scope="col">Output here:</th>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row" id="result"></th>
+        </tr>
+    </tbody>
+  </table>
 
 <script>
     //GET METHOD
@@ -48,7 +69,7 @@
         }
         const data = await response.json()
         console.log(data)
-        document.getElementById("result").innerHTML = "Output" + "<br>" + "<hr>" + data.title
+        document.getElementById("result").innerHTML = data.title
     }
 
     //POST METHOD
@@ -63,7 +84,7 @@
         }
 
         var choice_2= document.getElementsByName("third")
-        for(choice of choice_2){
+        for(choice of choice_2){    
             if(choice.checked){
                 var second_choice = choice.getAttribute("value")
             }
@@ -81,15 +102,15 @@
         })
 
         if(!response.ok){
-            throw new Error("Lods di mahanap web mo" + response.statusText)
+            throw new Error("Something Went Wrong" + response.statusText)
         }
         
         const data = await response.json()
         console.log(data.body)
-        document.getElementById("result").innerHTML = "Output" + "<br>" + "<hr>" + data.body
+        document.getElementById("result").innerHTML = data.body
     }
 
-    //check selected radio buttons
+    //check selected radio buttons for GET and POST
     function RadioCheck(){
         if(document.getElementById("get").checked){
             SaveResponse()
@@ -103,5 +124,31 @@
     }
 </script>
 
+<style>
+
+/*Full screen background image*/
+body{
+    background-image: url("https://wallpaperaccess.com/full/1168084.jpg");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+
+/*bootstrap table design*/
+table{
+    text-align: center; 
+    color: white; 
+    border: 1px solid white; 
+    font-size: 20px;
+    border-width: thick;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+</style>
 
 </html>
